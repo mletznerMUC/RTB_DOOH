@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mletznerMUC/RTB_DOOH/schemas/playout.schema.json",
+  "title": "Object: Playout (E1)",
+  "description": "Details about how the impression opportunity is scheduled on a DOOH screen or network. Lives in Imp.playout (target) or Imp.ext.playout (transition).",
+  "type": "object",
+  "properties": {
+    "loopdur": { "type": "integer", "minimum": 1, "description": "Duration of the full content loop in seconds." },
+    "slotdur": { "type": "integer", "minimum": 1, "description": "Duration of the ad slot in seconds. Creatives longer than slotdur must not be served." },
+    "sov": { "type": "number", "exclusiveMinimum": 0, "maximum": 1, "description": "Share of voice offered, decimal between 0 and 1." },
+    "plays": { "type": "integer", "minimum": 1, "description": "Number of plays of the creative that one win represents within the time window." },
+    "dtstart": { "type": "number", "description": "Start of the playout window, Unix ms. If present, imp.dt should equal dtstart." },
+    "dtend": { "type": "number", "description": "End of the playout window, Unix ms." },
+    "screens": { "type": "integer", "minimum": 1, "default": 1, "description": "Number of screens covered when a network or package is sold as one unit." },
+    "ext": { "type": "object" }
+  }
+}

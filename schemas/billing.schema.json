@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mletznerMUC/RTB_DOOH/schemas/billing.schema.json",
+  "title": "Object: Billing (E5)",
+  "description": "Commercial settlement terms of a deal. Lives in Deal.billing (target) or Deal.ext.billing (transition). If omitted, model = 1 (standard) is assumed.",
+  "type": "object",
+  "$defs": {
+    "model": {
+      "description": "List: Billing Models. 1 = standard, 2 = direct, 3 = dsp_direct, 500+ = exchange-specific.",
+      "type": "integer",
+      "anyOf": [{ "enum": [1, 2, 3] }, { "minimum": 500 }]
+    },
+    "party": {
+      "description": "List: Billing Parties. 1 = media owner/publisher, 2 = sales house, 3 = exchange/SSP, 4 = bidder/DSP, 5 = agency, 6 = advertiser.",
+      "enum": [1, 2, 3, 4, 5, 6]
+    }
+  },
+  "properties": {
+    "model": { "$ref": "#/$defs/model", "default": 1 },
+    "invoicer": { "$ref": "#/$defs/party" },
+    "invoicee": { "$ref": "#/$defs/party" },
+    "ioref": { "type": "string", "minLength": 1, "description": "IO / booking reference known to both contracting parties." },
+    "pricebasis": { "enum": [1, 2], "description": "1 = net media price, 2 = gross incl. agency commission." },
+    "techfee": { "enum": [0, 1, 2, 3, 4], "description": "0 = n/a, 1 = exchange -> seller, 2 = exchange -> bidder, 3 = bidder -> buyer, 4 = as agreed in the IO." },
+    "ext": { "type": "object" }
+  },
+  "if": { "properties": { "model": { "enum": [2, 3] } }, "required": ["model"] },
+  "then": { "required": ["ioref"] }
+}

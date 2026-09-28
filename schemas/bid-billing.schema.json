@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mletznerMUC/RTB_DOOH/schemas/bid-billing.schema.json",
+  "title": "Bid.billing echo (E6)",
+  "description": "Echo of the settlement terms the bidder accepts. Lives in Bid.billing (target) or Bid.ext.billing (transition). model must equal deal.billing.model, otherwise the bid is discarded (Loss Reason 'Billing model mismatch').",
+  "type": "object",
+  "properties": {
+    "model": { "$ref": "billing.schema.json#/$defs/model" },
+    "ioref": { "type": "string", "minLength": 1 },
+    "ext": { "type": "object" }
+  },
+  "required": ["model", "ioref"]
+}

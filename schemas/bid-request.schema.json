@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mletznerMUC/RTB_DOOH/schemas/bid-request.schema.json",
+  "title": "DOOH BidRequest profile (OpenRTB 2.6 + Ströer DOOH extensions)",
+  "description": "Validates the DOOH-relevant parts of a BidRequest. Not a full OpenRTB 2.6 schema. Extensions are accepted first-class (target) or under ext (transition).",
+  "type": "object",
+  "required": ["id", "imp", "dooh"],
+  "properties": {
+    "id": { "type": "string" },
+    "cur": { "type": "array", "items": { "type": "string", "pattern": "^[A-Z]{3}$" } },
+    "imp": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/imp" } },
+    "dooh": { "$ref": "#/$defs/dooh" },
+    "device": {
+      "type": "object",
+      "properties": { "devicetype": { "const": 8, "description": "AdCOM Device Types 8 = out-of-home (A4)." } }
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "schain": {
+          "type": "object",
+          "properties": {
+            "nodes": {
+              "type": "array",
+              "items": { "type": "object", "required": ["asi", "sid"], "properties": { "hp": { "enum": [0, 1] } } }
+            }
+          }
+        }
+      }
+    }
+  },
+  "not": { "anyOf": [{ "required": ["site"] }, { "required": ["app"] }] },
+  "$defs": {
+    "qty": {
+      "type": "object",
+      "required": ["multiplier"],
+      "properties": {
+        "multiplier": { "type": "number", "exclusiveMinimum": 0 },
+        "sourcetype": { "enum": [0, 1, 2, 3] },
+        "vendor": { "type": "string" }
+      }
+    },
+    "deal": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": { "type": "string" },
+        "at": { "enum": [1, 2, 3] },
+        "guar": { "enum": [0, 1] },
+        "crapproval": { "$ref": "crapproval.schema.json" },
+        "billing": { "$ref": "billing.schema.json" },
+        "ext": {
+          "type": "object",
+          "properties": {
+            "crapproval": { "$ref": "crapproval.schema.json" },
+            "billing": { "$ref": "billing.schema.json" }
+          }
+        }
+      }
+    },
+    "imp": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": { "type": "string" },
+        "dt": { "type": "number" },
+        "qty": { "$ref": "#/$defs/qty" },
+        "playout": { "$ref": "playout.schema.json" },
+        "crapproval": { "$ref": "crapproval.schema.json" },
+        "pmp": {
+          "type": "object",
+          "properties": { "deals": { "type": "array", "items": { "$ref": "#/$defs/deal" } } }
+        },
+        "ext": {
+          "type": "object",
+          "properties": {
+            "playout": { "$ref": "playout.schema.json" },
+            "crapproval": { "$ref": "crapproval.schema.json" },
+            "totalaud": { "type": "number", "deprecated": true, "description": "Deprecated for DOOH; map to qty.multiplier (A2)." }
+          }
+        }
+      }
+    },
+    "dooh": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "venuetype": { "type": "array", "items": { "type": "string" } },
+        "venuetypetax": { "type": "integer" },
+        "publisher": { "type": "object" },
+        "screen": { "$ref": "screen.schema.json" },
+        "ext": { "type": "object", "properties": { "screen": { "$ref": "screen.schema.json" } } }
+      }
+    }
+  }
+}

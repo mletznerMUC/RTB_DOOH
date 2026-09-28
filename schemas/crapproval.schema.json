@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mletznerMUC/RTB_DOOH/schemas/crapproval.schema.json",
+  "title": "Attribute: crapproval (E3) - List: Creative Approval Modes",
+  "description": "0 = none, 1 = creative must be pre-registered and approved before serving, 2 = only creatives approved for this deal may be served. Lives in Imp / Deal (target) or their ext (transition).",
+  "enum": [0, 1, 2]
+}

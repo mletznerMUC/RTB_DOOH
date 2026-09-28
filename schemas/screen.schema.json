@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mletznerMUC/RTB_DOOH/schemas/screen.schema.json",
+  "title": "Object: Screen (E2)",
+  "description": "Physical characteristics of the display. Lives in DOOH.screen (target) or DOOH.ext.screen (transition).",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string", "description": "Exchange- or media-owner-specific identifier of the physical screen or face." },
+    "orient": { "enum": [1, 2, 3], "description": "1 = landscape, 2 = portrait, 3 = square." },
+    "diag": { "type": "number", "exclusiveMinimum": 0, "description": "Screen diagonal in inches." },
+    "env": { "enum": [1, 2, 3], "description": "1 = indoor, 2 = outdoor, 3 = semi-outdoor." },
+    "motion": { "enum": [0, 1], "description": "0 = static only, 1 = motion allowed." },
+    "audio": { "enum": [0, 1], "description": "0 = muted, 1 = audio on." },
+    "ext": { "type": "object" }
+  }
+}

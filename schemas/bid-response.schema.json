@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mletznerMUC/RTB_DOOH/schemas/bid-response.schema.json",
+  "title": "DOOH BidResponse profile (OpenRTB 2.6 + Ströer DOOH extensions)",
+  "description": "Validates the DOOH-relevant parts of a BidResponse. Not a full OpenRTB 2.6 schema.",
+  "type": "object",
+  "required": ["id"],
+  "properties": {
+    "id": { "type": "string" },
+    "cur": { "type": "string", "pattern": "^[A-Z]{3}$" },
+    "seatbid": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["bid"],
+        "properties": { "bid": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/bid" } } }
+      }
+    }
+  },
+  "$defs": {
+    "bid": {
+      "type": "object",
+      "required": ["id", "impid", "price"],
+      "properties": {
+        "id": { "type": "string" },
+        "impid": { "type": "string" },
+        "price": { "type": "number", "minimum": 0 },
+        "dealid": { "type": "string" },
+        "crid": { "type": "string" },
+        "burl": { "type": "string", "format": "uri-template" },
+        "billing": { "$ref": "bid-billing.schema.json" },
+        "ext": {
+          "type": "object",
+          "properties": {
+            "billing": { "$ref": "bid-billing.schema.json" },
+            "avn": { "type": "string" },
+            "agn": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

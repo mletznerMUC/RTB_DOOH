@@ -1,0 +1,32 @@
+{
+  "id": "req-8f2c",
+  "cur": "EUR",
+  "seatbid": [
+    {
+      "seat": "seat-123",
+      "bid": [
+        {
+          "id": "b-1",
+          "impid": "1",
+          "price": 12.0,
+          "dealid": "STR-DOOH-2026-0412",
+          "crid": "cr-approved-5531",
+          "adomain": [
+            "advertiser.example"
+          ],
+          "mtype": 2,
+          "dur": 10,
+          "burl": "https://dsp.example/bill?p=${AUCTION_PRICE}&n=${PLAY_COUNT}&ts=${PLAY_TS}&m=${QTY_MULTIPLIER}&bm=${BILLING_MODEL}",
+          "ext": {
+            "avn": "Example Advertiser GmbH",
+            "agn": "Example Agency",
+            "billing": {
+              "model": 2,
+              "ioref": "IO-2026-77815"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

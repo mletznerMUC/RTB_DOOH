@@ -1,0 +1,111 @@
+{
+  "id": "req-8f2c",
+  "at": 1,
+  "tmax": 300,
+  "cur": [
+    "EUR"
+  ],
+  "imp": [
+    {
+      "id": "1",
+      "video": {
+        "mimes": [
+          "video/mp4"
+        ],
+        "w": 1080,
+        "h": 1920,
+        "maxduration": 10
+      },
+      "bidfloorcur": "EUR",
+      "dt": 1790582400000,
+      "qty": {
+        "multiplier": 14.5,
+        "sourcetype": 1,
+        "vendor": "example-measurement.com"
+      },
+      "playout": {
+        "loopdur": 60,
+        "slotdur": 10,
+        "sov": 0.1667,
+        "plays": 6,
+        "dtstart": 1790582400000,
+        "dtend": 1790586000000,
+        "screens": 1
+      },
+      "crapproval": 1,
+      "pmp": {
+        "private_auction": 1,
+        "deals": [
+          {
+            "id": "STR-DOOH-2026-0412",
+            "bidfloor": 12.0,
+            "bidfloorcur": "EUR",
+            "at": 3,
+            "guar": 1,
+            "wseat": [
+              "seat-123"
+            ],
+            "billing": {
+              "model": 2,
+              "invoicer": 2,
+              "invoicee": 5,
+              "ioref": "IO-2026-77815",
+              "pricebasis": 1,
+              "techfee": 3
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "dooh": {
+    "id": "scr-hbf-ffm-07",
+    "name": "Frankfurt Central Station, Concourse, Screen 7",
+    "venuetype": [
+      "transit.train_stations"
+    ],
+    "venuetypetax": 2,
+    "publisher": {
+      "id": "pub-001",
+      "name": "Example Media Owner",
+      "domain": "example-media.de"
+    },
+    "screen": {
+      "id": "face-07",
+      "orient": 2,
+      "diag": 75,
+      "env": 1,
+      "motion": 1,
+      "audio": 0
+    }
+  },
+  "device": {
+    "devicetype": 8,
+    "w": 1080,
+    "h": 1920,
+    "geo": {
+      "lat": 50.1071,
+      "lon": 8.6638,
+      "type": 3,
+      "country": "DEU"
+    }
+  },
+  "source": {
+    "schain": {
+      "ver": "1.0",
+      "complete": 1,
+      "nodes": [
+        {
+          "asi": "example-media.de",
+          "sid": "pub-001",
+          "hp": 1
+        },
+        {
+          "asi": "stroeer.com",
+          "sid": "12345",
+          "hp": 0
+        }
+      ]
+    }
+  }
+}
